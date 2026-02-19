@@ -4,7 +4,6 @@ class Week:
     def __init__(self, start_date, end_date, week_target):
         self.start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
         self.end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
-        self.week_target = week_target
         self.days = []
         self.week_balance = 0
         
@@ -13,9 +12,9 @@ class Week:
 
     def add_day(self, day):
         self.days.append(day)
-        self.calculate_week_balance()
+        self.calculate_balance()
 
-    def calculate_week_balance(self):
+    def calculate_balance(self):
         self.week_balance = 0
 
         for day in self.days:

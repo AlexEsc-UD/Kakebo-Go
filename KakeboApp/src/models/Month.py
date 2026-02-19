@@ -9,7 +9,7 @@ class Month:
         self.balance_month = 0
     
 
-    def calculate_month_balance(self):
+    def calculate_balance(self):
 
         self.balance_month = 0
 
