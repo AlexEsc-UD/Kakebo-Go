@@ -1,5 +1,6 @@
 import datetime
 
+#clase principal de calculo
 class Transaction:
     def __init__(self, id, title, date, value, category, type, description):
         self.id = id

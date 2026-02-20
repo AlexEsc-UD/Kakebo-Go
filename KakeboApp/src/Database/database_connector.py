@@ -12,24 +12,24 @@ class DatabaseConnector:
 
         cursor.execute('PRAGMA foreign_keys = ON;')
 
-        self.cursor.execute('''
+        cursor.execute('''
             CREATE TABLE IF NOT EXISTS years (
-                id INTEGER PRIMARY KEY,
-                year_number TEXT NOT NULL UNIQUE
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                year_number INTEGER NOT NULL UNIQUE
             )
         ''')
 
-        self.cursor.execute('''
+        cursor.execute('''
             CREATE TABLE IF NOT EXISTS months (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 year_id INTEGER NOT NULL,
                 month_title TEXT NOT NULL,
-                date TEXT NOT NULL,
+                date_start TEXT NOT NULL,
                 FOREIGN KEY (year_id) REFERENCES years (id) ON DELETE CASCADE
             )
         ''')
 
-        self.cursor.execute('''
+        cursor.execute('''
             CREATE TABLE IF NOT EXISTS weeks (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 month_id INTEGER NOT NULL,
@@ -39,19 +39,9 @@ class DatabaseConnector:
             )
         ''')
 
-        self.cursor.execute('''
-            CREATE TABLE IF NOT EXISTS months (
-                id INTEGER PRIMARY KEY,
-                month_title TEXT NOT NULL UNIQUE,
-                date TEXT NOT NULL,
-                year_id INTEGER,
-                FOREIGN KEY (year_id) REFERENCES years(id)
-            )
-        ''')
-
-        self.cursor.execute('''
+        cursor.execute('''
             CREATE TABLE IF NOT EXISTS transactions (
-                id INTEGER PRIMARY KEY,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
                 date TEXT NOT NULL,
                 value REAL NOT NULL,

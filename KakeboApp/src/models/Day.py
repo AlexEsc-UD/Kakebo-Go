@@ -1,15 +1,19 @@
 import datetime
 
+
+
 class Day:
     def __init__(self, date):
         self.date = datetime.datetime.strptime(date, '%Y-%m-%d')
         self.transactions = []
     
+    #agrega una nueva transaccion
     def add_transaction(self, transaction):
 
         self.transactions.append(transaction)
         self.calculate_balance()
 
+    #calculo del balance del dia 
     def calculate_balance(self):
 
         self.balance = 0

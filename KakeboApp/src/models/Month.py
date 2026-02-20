@@ -1,10 +1,9 @@
 import datetime
 
 class Month:
-    def __init__(self, month_title, date, year):
+    def __init__(self, month_title, date_start):
         self.month_title = month_title    
-        self.date = datetime.datetime.strptime(date, '%Y-%m-%d')
-        self.year = self.date.year
+        self.date = datetime.datetime.strptime(date_start, '%Y-%m-%d')
         self.weeks = []
         self.balance_month = 0
     
