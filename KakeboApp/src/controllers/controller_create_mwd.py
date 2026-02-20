@@ -1,10 +1,10 @@
 import datetime
 import calendar
 
-from src.Database.Repositories import Repository_Year
-from src.Database.Repositories import Repository_Month
-from src.Database.Repositories import Repository_Week
-from src.Database.Repositories import Repository_Day 
+from Database.Repositories import Repository_Year
+from Database.Repositories import Repository_Month
+from Database.Repositories import Repository_Week
+
 
 
 
@@ -15,17 +15,16 @@ class ControllerCreateMWD:
     id_week = None
     id_day = None
 
-    def __init__ (self, date):
-        self.date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    def __init__ (self):
+        self.date = datetime.date.today()
 
     def create_year(self):
 
         year = self.date.year
         year_dao = Repository_Year.YearDao()
-        year_dao.save_year(year)
+        self.id_year = year_dao.save_year(year)
 
-        self.id_year = year_dao.get_year_id(year)    
-
+           
         self.create_months(self.id_year)
 
 
@@ -43,7 +42,7 @@ class ControllerCreateMWD:
         
             month_dao = Repository_Month.MonthDao()
             # Ahora pasas la fecha generada, no una externa
-            self.id_month = month_dao.save_month_with_date(id_year, month_title, month_date)
+            self.id_month = month_dao.save_month(id_year, month_title, month_date)
 
             self.create_week(self.date.year, self.id_month, month_idx)
 
@@ -52,7 +51,7 @@ class ControllerCreateMWD:
 
     def create_week(self, year, id_month, month_number):
 
-        week_dao = Repository_Month.MonthDao()
+        week_dao = Repository_Week.WeekDao()
 
         cal = calendar.monthcalendar(year, month_number)
 
@@ -73,8 +72,3 @@ class ControllerCreateMWD:
 
 
 
-    def create_day(self):
-
-        day = self.date.day
-        day_dao = Repository_Day.DayDao()
-        day_dao.save_day(day)

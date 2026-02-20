@@ -1,6 +1,6 @@
 import sqlite3 as sql
-from src.Database.database_connector import DatabaseConnector
-from src.models.Month import Month
+from Database.database_connector import DatabaseConnector
+from models.Month import Month
 
 class MonthDao:
 

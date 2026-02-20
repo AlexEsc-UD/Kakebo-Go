@@ -1,6 +1,7 @@
 import sqlite3 as sql
 
-import database_connector
+from Database import database_connector
+from Database.database_connector import DatabaseConnector
 
 class YearDao:
 

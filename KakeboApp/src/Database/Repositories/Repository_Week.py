@@ -1,5 +1,8 @@
 import sqlite3 as sql
 
+from Database.database_connector import DatabaseConnector
+from models.Week import Week
+
 class WeekDao:
 
     def __init__(self):
@@ -14,7 +17,7 @@ class WeekDao:
             VALUES (?, ?, ?)
         ''', (month_id, start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d')))
 
-        self.db.conn.commit()
+        self.db.commit()
 
     def get_weeks_by_month(self, month_id):
 
