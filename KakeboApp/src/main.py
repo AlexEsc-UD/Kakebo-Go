@@ -1,67 +1,56 @@
 import flet as ft
+from models.Transaction import Transaction
+from models.Day import Day
+from models.Week import Week
+# Asegúrate de que las rutas de importación coincidan con tu estructura
 
-from Database.database_connector import DatabaseConnector
-from controllers.controller_create_mwd import ControllerCreateMWD
+from UI.Components.Transaction_Card import TransactionCard
+from UI.Components.DayCard import DayCard
+from UI.Components.WeekCard import WeekCard
 
 
 def main(page: ft.Page):
-    counter = ft.Text("0", size=50, data=0)
+    page.title = "Kakebo GO - Dashboard"
+    page.theme_mode = ft.ThemeMode.DARK
+    page.bgcolor = "#00021d"
+    page.padding = 10
 
-    def increment_click(e):
-        counter.data += 1
-        counter.value = str(counter.data)
+    # Título de la sección
+    page.add(ft.Text("Historial Reciente", size=24, weight=ft.FontWeight.BOLD))
+    page.add(ft.Divider(height=20, color=ft.Colors.TRANSPARENT))
 
-    page.floating_action_button = ft.FloatingActionButton(
-        icon=ft.Icons.ADD, on_click=increment_click
-    )
+    # Transacción de prueba
+    transac = Transaction(1, "Salario", "2024-06-15", 1750000, "Trabajo", "income", "Pago mensual de nómina")
+    transac2 = Transaction(2, "Supermercado", "2024-06-15", 250000, "Comida", "expense", "Compra semanal")
+    transac3 = Transaction(3, "Compra de medicamentos", "2024-06-16", 22000, "Salud", "expense", "compra de medicacion")
+    transac4 = Transaction(1, "Mesada semanal", "2024-06-15", 100000, "Ganancia ocasional", "income", "Pago mensual de nómina")
+
+    day1 = Day("2024-06-15")
+    day2 = Day("2024-06-16")
+
+    week1 = Week("Semana 1", "2024-06-10", "2024-06-16")
+
+    day1.add_transaction(transac)
+    day1.add_transaction(transac2)
+    day2.add_transaction(transac3)
+    day2.add_transaction(transac4)
+
+    week1.add_day(day1)
+    week1.add_day(day2)
+    
+    # Añadimos las tarjetas
     page.add(
-        ft.SafeArea(
-            expand=True,
-            content=ft.Container(
-                content=counter,
-                alignment=ft.Alignment.CENTER,
-            ),
-        )
+        TransactionCard(transac),
+        TransactionCard(transac2),
+        DayCard(day1),
+        DayCard(day2),
+        WeekCard(week1),
+
+
+
     )
 
-def probar_creacion():
-    # 1. Preparar la Base de Datos
-    print("Conectando y creando tablas...")
-    db = DatabaseConnector()
-    db.create_tables()
 
-    # 2. INICIALIZAR EL CONTROLADOR
-    # Pasamos una fecha de 2026. El controlador usará el año 2026.
-    print("Inicializando controlador para el año 2026...")
-    
-    controlador = ControllerCreateMWD()
-
-    # 3. EJECUTAR LA CREACIÓN
-    # Llamamos a create_year, que a su vez llama a meses y semanas
-    print("Ejecutando creación en cascada (Año -> Meses -> Semanas)...")
-    controlador.create_year()
-
-    print("\n¡Proceso finalizado!")
-    print("-" * 30)
-
-    # 4. VERIFICACIÓN RÁPIDA
-    # Comprobamos si hay datos en las tablas
-    db.cursor.execute("SELECT COUNT(*) FROM years")
-    anios = db.cursor.fetchone()[0]
-    
-    db.cursor.execute("SELECT COUNT(*) FROM months")
-    meses = db.cursor.fetchone()[0]
-    
-    db.cursor.execute("SELECT COUNT(*) FROM weeks")
-    semanas = db.cursor.fetchone()[0]
-
-    print(f"Resultados en la BD:")
-    print(f"- Años creados: {anios}")
-    print(f"- Meses creados: {meses} (Deberían ser 12)")
-    print(f"- Semanas creadas: {semanas} (Deberían ser ~52)")
 
 if __name__ == "__main__":
-    probar_creacion()
-
-
-ft.run(main)
+    ft.app(target=main)
