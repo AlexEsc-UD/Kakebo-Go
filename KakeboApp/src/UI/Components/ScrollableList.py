@@ -2,9 +2,6 @@ import flet as ft
 from typing import List, Union
 
 class ScrollableCardList(ft.Container):
-    """
-    Una clase única para manejar cualquier tipo de lista desplazable de tarjetas.
-    """
     def __init__(self,  cards: List[ft.Container] = None):
         super().__init__()
         self.expand = True
@@ -17,17 +14,20 @@ class ScrollableCardList(ft.Container):
             controls=cards if cards else [],
             scroll=ft.ScrollMode.HIDDEN,  # Scroll suave
             expand=True,
-            spacing=5,  # Espacio consistente entre tarjetas
+            spacing=1,  # Espacio consistente entre tarjetas
         )
         
 
         # Estructura visual de la lista
         self.content = ft.Column(
             controls=[
-                ft.Divider(height=1, color="#1B263B"),
-                self.scroll_area # Aquí viven las tarjetas
+                ft.Container(
+                    content=self.scroll_area,
+                    padding=ft.padding.symmetric(horizontal=10),
+                    expand=True,
+                )
             ],
-            expand=True
+
         )
 
     def add_card(self, card: ft.Container):

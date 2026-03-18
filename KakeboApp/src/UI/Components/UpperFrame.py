@@ -13,8 +13,8 @@ class UpperFrame(ft.Container):
         self.width = self.expand
         self.height = 50
         self.border_radius = 20
-        self.padding = 15
-        self.margin = ft.margin.only(bottom=10)
+        self.padding = ft.padding.symmetric(vertical=10, horizontal=15)
+        self.margin = ft.margin.symmetric(horizontal=5, vertical=0)
         self.border = ft.border.all(1, "#1B263B")
         self.shadow = ft.BoxShadow(
             blur_radius=15, 

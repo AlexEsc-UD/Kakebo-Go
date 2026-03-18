@@ -14,16 +14,22 @@ from UI.Components.WeekCard import WeekCard
 from UI.Components.MounthCard import MonthCard
 from UI.Components.ScrollableList import ScrollableCardList
 from UI.Components.UpperFrame import UpperFrame
+from UI.Components.down_frame import DownFrame
 
 
 def main(page: ft.Page):
     page.title = "Kakebo GO - Dashboard"
     page.theme_mode = ft.ThemeMode.DARK
     page.bgcolor = "#00021d"
-    page.padding = 6
+    page.padding = ft.padding.only(
+        top=0,
+        left=0,
+        right=0,
+        bottom=30  # Espacio para los botones de navegación
+    )
 
     # Título de la sección
-    page.add(ft.Divider(height=10, color=ft.Colors.TRANSPARENT))
+
 
     # Transacción de prueba
     transac = Transaction(1, "Salario", "2024-06-15", 1750000, "Trabajo", "income", "Pago mensual de nómina")
@@ -81,8 +87,18 @@ def main(page: ft.Page):
 
     # Añadimos las tarjetas
     page.add(
-        UpperFrame(day1),
-        ScrollableCardList(cards=ListCard)
+        ft.Column(
+            expand=True,
+            spacing=0,
+            controls=[
+                ft.Divider(height=20, color=ft.Colors.TRANSPARENT),
+                UpperFrame(day1),
+                ft.Divider(height=10, color=ft.Colors.TRANSPARENT),
+                ScrollableCardList(cards=ListCard),
+                DownFrame(),
+
+            ]
+        )
     )
 
 
