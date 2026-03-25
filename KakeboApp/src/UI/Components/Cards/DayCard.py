@@ -1,5 +1,5 @@
 import flet as ft
-from models.Day import Day
+from models.day import Day
 
 class DayCard(ft.Container):
     def __init__(self, day_obj: Day):
@@ -40,7 +40,7 @@ class DayCard(ft.Container):
                         ft.Text(
                             spans=[
                                 ft.TextSpan("In: ", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)),
-                                ft.TextSpan(f"${day_obj.income:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.GREEN_ACCENT_400))
+                                ft.TextSpan(f"${day_obj.incomes:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.GREEN_ACCENT_400))
                             ],
                             size=14,
 
@@ -49,7 +49,7 @@ class DayCard(ft.Container):
                         ft.Text(
                             spans=[
                                 ft.TextSpan("Egr: ", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)),
-                                ft.TextSpan(f"${day_obj.expense:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.RED_ACCENT_400))
+                                ft.TextSpan(f"${day_obj.expenses:,.2f}", ft.TextStyle(weight=ft.FontWeight.BOLD,color=ft.Colors.RED_ACCENT_400))
                             ],
                             size=14,
                             
@@ -76,3 +76,6 @@ class DayCard(ft.Container):
             ,
             ]
         )
+
+    def on_click(self, e):
+        self.page.go("/day")

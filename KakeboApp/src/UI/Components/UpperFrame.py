@@ -1,13 +1,12 @@
 import flet as ft
-from models.Day import Day
+from models.day import Day
 from models.Week import Week
 from models.Month import Month
 
 
 
 class UpperFrame(ft.Container):
-
-    def __init__(self, day_obj: Day):
+    def __init__(self, obj):
         super().__init__()
         self.bgcolor = "#04002B"
         self.width = self.expand
@@ -17,23 +16,24 @@ class UpperFrame(ft.Container):
         self.margin = ft.margin.symmetric(horizontal=5, vertical=0)
         self.border = ft.border.all(1, "#1B263B")
         self.shadow = ft.BoxShadow(
-            blur_radius=15, 
-            color=ft.Colors.with_opacity(0.2, ft.Colors.BLACK), 
+            blur_radius=15,
+            color=ft.Colors.with_opacity(0.2, ft.Colors.BLACK),
             offset=ft.Offset(0, 4)
         )
-
         self.content = ft.Row(
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             controls=[
-
-                
-                ft.Text(day_obj.title, size=18, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
-                ft.Text(day_obj.date.strftime("%d/%m"), size=12, color=ft.Colors.GREY_400)
+                ft.Text(obj.title, size=18, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
+                ft.Text(self._format_date(obj), size=12, color=ft.Colors.GREY_400)
             ]
-
         )
 
+    def _format_date(self, obj) -> str:
+        if isinstance(obj, Day):
+            return obj.date.strftime("%d/%m")
+        elif isinstance(obj, Week):
+            return f"{obj.start_date.strftime('%d/%m')} - {obj.end_date.strftime('%d/%m')}"
+        elif isinstance(obj, Month):
+            return obj.date.strftime("%B %Y")
 
-
-
-    
+        return ""

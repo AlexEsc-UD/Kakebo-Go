@@ -1,7 +1,8 @@
 import flet as ft
 
+from models import day
 from models.Transaction import Transaction
-from models.Day import Day
+from models.day import Day
 from models.Week import Week
 from models.Month import Month
 
@@ -15,18 +16,14 @@ from UI.Components.Cards.MounthCard import MonthCard
 from UI.Components.ScrollableList import ScrollableCardList
 from UI.Components.UpperFrame import UpperFrame
 from UI.Components.down_frame import DownFrame
+from UI.views.day_view import DayView
 
 
 def main(page: ft.Page):
     page.title = "Kakebo GO - Dashboard"
     page.theme_mode = ft.ThemeMode.DARK
     page.bgcolor = "#00021d"
-    page.padding = ft.padding.only(
-        top=0,
-        left=0,
-        right=0,
-        bottom=30  # Espacio para los botones de navegación
-    )
+    page.padding = 0
 
     # Título de la sección
 
@@ -85,28 +82,34 @@ def main(page: ft.Page):
         MonthCard(mounth1)
     ]
 
-    # Añadimos las tarjetas
-    page.add(
-        ft.Column(
-            expand=True,
-            spacing=0,
-            controls=[
-                ft.Divider(height=20, color=ft.Colors.TRANSPARENT),
-                UpperFrame(day1),
-                ScrollableCardList(cards=ListCard),
-                DownFrame(),
+    
 
-            ]
-        )
-    )
+    def route_change(e):
+        page.views.clear()
 
+        if page.route == "/day":
+            page.views.append(DayView(page, day1))
+            
+        elif page.route == "/":
+        
+            page.go("/day") # Aquí puedes pasar el día que quieras mostrar
+        page.update()
 
+    def view_pop(e):
+        if len(page.views) > 1:
+            page.views.pop()
+            top_view = page.views[-1]
+            page.go(top_view.route)
+        page.update()
+
+    page.on_route_change = route_change
+    page.on_view_pop = view_pop
+
+    page.go("/day")  # Navega a la vista del día al iniciar la aplicación
 
 
 
     
 
-
-
-if __name__ == "__main__":
-    ft.app(target=main)
+    # Añadimos las tarjetas
+ft.app(target=main)

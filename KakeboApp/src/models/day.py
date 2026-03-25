@@ -13,8 +13,8 @@ class Day:
         self.date = datetime.datetime.strptime(date, '%Y-%m-%d')
         self.transactions = []
         self.title = self.date.strftime("%A").capitalize()  # Nombre del día de la semana
-        self.income = 0
-        self.expense = 0
+        self.incomes = 0
+        self.expenses = 0
         self.balance = 0
     #agrega una nueva transaccion
     def add_transaction(self, transaction):

@@ -23,7 +23,7 @@ class ScrollableCardList(ft.Container):
             controls=[
                 ft.Container(
                     content=self.scroll_area,
-                    padding=ft.padding.symmetric(horizontal=10),
+                    padding=ft.padding.symmetric(horizontal=8),
                     expand=True,
                 )
             ],
@@ -31,11 +31,9 @@ class ScrollableCardList(ft.Container):
         )
 
     def add_card(self, card: ft.Container):
-        """Añade una nueva tarjeta a la lista dinámicamente"""
         self.scroll_area.controls.append(card)
         self.scroll_area.update()
 
     def replace_cards(self, new_cards: List[ft.Container]):
-        """Reemplaza todas las tarjetas actuales por un set nuevo"""
         self.scroll_area.controls = new_cards
         self.scroll_area.update()
