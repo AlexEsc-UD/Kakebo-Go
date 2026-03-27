@@ -91,8 +91,8 @@ def main(page: ft.Page):
         page.views.clear()
 
         if page.route == "/day":
-            page.views.append(DayView(page, mounth1))
-            
+            page.views.append(DayView(page, day1))  # Aquí puedes pasar el día que quieras mostrar
+        
         elif page.route == "/":
         
             page.go("/day") # Aquí puedes pasar el día que quieras mostrar
@@ -115,4 +115,4 @@ def main(page: ft.Page):
     
 
     # Añadimos las tarjetas
-ft.app(target=main)
+ft.run(main)
