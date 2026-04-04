@@ -1,8 +1,7 @@
 import flet as ft
 
 
-from UI.Components.Cards.DayCard import DayCard
-from UI.Components.Cards.WeekCard import WeekCard
+
 from UI.Components.UpperFrame import UpperFrame
 from UI.Components.ScrollableList import ScrollableCardList
 from UI.Components.custom_side_bar import CustomBottomBar
@@ -10,6 +9,7 @@ from UI.Components.custom_side_bar import CustomBottomBar
 
 from UI.Components.Cards.Transaction_Card import TransactionCard
 from UI.Components.balance_frame import BalanceFrame 
+from UI.Components.Cards.general_card import GeneralCard
 
 from models.Month import Month
 from models.day import Day
@@ -51,9 +51,9 @@ class PeriodView(ft.View):
         if isinstance(obj, Day):
             return [TransactionCard(t) for t in obj.transactions]
         elif isinstance(obj, Week):
-            return [DayCard(d) for d in obj.days]
+            return [GeneralCard(d) for d in obj.days]
         elif isinstance(obj, Month):
-            return [WeekCard(w) for w in obj.weeks]
+            return [GeneralCard(w) for w in obj.weeks]
         else:
             return []
                          

@@ -1,18 +1,12 @@
 import flet as ft
 
-from models import day
 from models.Transaction import Transaction
 from models.day import Day
 from models.week import Week
 from models.Month import Month
 
-
-# Asegúrate de que las rutas de importación coincidan con tu estructura
-
 from UI.Components.Cards.Transaction_Card import TransactionCard
-from UI.Components.Cards.DayCard import DayCard
-from UI.Components.Cards.WeekCard import WeekCard
-from UI.Components.Cards.MounthCard import MonthCard
+from UI.Components.Cards.general_card import GeneralCard
 from UI.views.period_view import PeriodView
 from UI.views.home_view import HomeView
 
@@ -70,8 +64,8 @@ async def main(page: ft.Page):
     mounth1.add_week(week2)
 
     ListCard = [
-        DayCard(day1),
-        DayCard(day2),
+        GeneralCard(day1),
+        GeneralCard(day2),
         TransactionCard(transac),
         TransactionCard(transac2),
         TransactionCard(transac3),
@@ -79,9 +73,9 @@ async def main(page: ft.Page):
         TransactionCard(transac5),
         TransactionCard(transac6),
         TransactionCard(transac7),
-        WeekCard(week1),
-        WeekCard(week2),
-        MonthCard(mounth1)
+        GeneralCard(week1),
+        GeneralCard(week2),
+        GeneralCard(mounth1)
     ]
 
     
@@ -91,7 +85,7 @@ async def main(page: ft.Page):
 
         if page.route == "/Period":
                     
-            page.views.append(PeriodView(page, day2))  
+            page.views.append(PeriodView(page, mounth1))  # Aquí puedes pasar el día que quieras mostrar
         
         elif page.route == "/":
 

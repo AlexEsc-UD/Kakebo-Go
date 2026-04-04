@@ -1,8 +1,7 @@
 import flet as ft
 
 
-from UI.Components.Cards.DayCard import DayCard
-from UI.Components.Cards.WeekCard import WeekCard
+
 from UI.Components.UpperFrame import UpperFrame
 from UI.Components.ScrollableList import ScrollableCardList
 from UI.Components.custom_side_bar import CustomBottomBar
