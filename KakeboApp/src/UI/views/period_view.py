@@ -11,9 +11,11 @@ from UI.Components.Cards.Transaction_Card import TransactionCard
 from UI.Components.balance_frame import BalanceFrame 
 from UI.Components.Cards.general_card import GeneralCard
 
+
 from models.Month import Month
 from models.day import Day
 from models.week import Week
+
 
 
 class PeriodView(ft.View):
@@ -28,6 +30,7 @@ class PeriodView(ft.View):
         self.bottom_bar = CustomBottomBar()
         
         
+        
         super().__init__(
             route="/Period",
             bgcolor="#00021d",
@@ -37,6 +40,7 @@ class PeriodView(ft.View):
                 controls=[
                     self.upper_frame,
                     self.transaction_list,
+
                     self.balance_frame,
 
                     
