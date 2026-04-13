@@ -16,20 +16,16 @@ from models.Month import Month
 from models.day import Day
 from models.week import Week
 
-
+from UI.Components.type_selector import CustomButton
 
 class PeriodView(ft.View):
     def __init__(self,  page: ft.Page, obj):
 
-
-        
         self.obj = obj
         self.upper_frame = UpperFrame(obj)
         self.transaction_list = ScrollableCardList(self.list_card_type(obj))
         self.balance_frame = BalanceFrame(obj)
-        self.bottom_bar = CustomBottomBar()
-        
-        
+        self.bottom_bar = CustomBottomBar()   
         
         super().__init__(
             route="/Period",
@@ -38,11 +34,10 @@ class PeriodView(ft.View):
             navigation_bar=self.bottom_bar,
             controls=[ft.Column(
                 controls=[
+                    
                     self.upper_frame,
                     self.transaction_list,
-
                     self.balance_frame,
-
                     
                 ],
                 expand=True

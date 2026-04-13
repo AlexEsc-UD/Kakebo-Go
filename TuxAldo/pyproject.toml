@@ -1,5 +1,5 @@
 [project]
-name = "kakeboapp"
+name = "TuxAldoApp"
 version = "0.1.0"
 description = ""
 readme = "README.md"
@@ -20,7 +20,7 @@ dev = [
 
 [tool.flet]
 org = "com.mycompany"
-product = "kakeboapp"
+product = "TuxAldo"
 company = "Flet"
 copyright = "Copyright (C) 2023-2026 by Flet"
 
