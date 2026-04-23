@@ -10,6 +10,7 @@ from UI.Components.custom_side_bar import CustomBottomBar
 from UI.Components.Cards.Transaction_Card import TransactionCard
 from UI.Components.balance_frame import BalanceFrame 
 from UI.Components.Cards.general_card import GeneralCard
+from UI.Components.custom_textfield import CustomTextField
 
 
 from models.Month import Month
@@ -26,6 +27,7 @@ class PeriodView(ft.View):
         self.transaction_list = ScrollableCardList(self.list_card_type(obj))
         self.balance_frame = BalanceFrame(obj)
         self.bottom_bar = CustomBottomBar()   
+        self.text_field = CustomTextField("Nombre", False, False)
         
         super().__init__(
             route="/Period",
@@ -38,6 +40,7 @@ class PeriodView(ft.View):
                     self.upper_frame,
                     self.transaction_list,
                     self.balance_frame,
+                    self.text_field
                     
                 ],
                 expand=True
