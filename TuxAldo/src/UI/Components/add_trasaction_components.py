@@ -13,7 +13,7 @@ class TitleComponent(ft.Container):
 
         self.bgcolor = "#04002B"
         self.width = self.expand
-        self.height = 100
+        self.height = 120
         self.border_radius = 20
         self.padding = 15
         self.margin = ft.Margin.only(bottom=10)

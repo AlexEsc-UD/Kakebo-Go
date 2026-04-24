@@ -6,7 +6,6 @@ class CustomTextField(ft.TextField):
         super().__init__()
         self.hint_text = hiden_text
         self.multiline = multiline
-        self.password = password  # Asignamos el valor
         self.expand = True
         
         # Configuración de estilo
@@ -14,7 +13,7 @@ class CustomTextField(ft.TextField):
         self.border_color = "#1B263B"
         self.focused_border_color = "#1B263B"
         self.color = ft.Colors.WHITE    
-        self.height = 45
+        self.height = 40
         self.border_radius = 10
         
         # Aplicamos las propiedades a la instancia de Flet
