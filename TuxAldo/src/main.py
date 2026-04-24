@@ -18,7 +18,7 @@ async def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.DARK
     page.bgcolor = "#00021d"
     page.padding = 0
-    
+        
 
 
     # Título de la sección

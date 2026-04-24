@@ -22,7 +22,6 @@ class TransactionCard(ft.Container):
         prefix = "+" if transaction_obj.type == 'income' else "-"
 
         self.content = ft.Column(
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             controls=[
                 ft.Row(
                     alignment=ft.MainAxisAlignment.SPACE_BETWEEN,

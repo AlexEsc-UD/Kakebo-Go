@@ -1,23 +1,19 @@
 import flet as ft
 
-
-
 from UI.Components.UpperFrame import UpperFrame
 from UI.Components.ScrollableList import ScrollableCardList
 from UI.Components.custom_side_bar import CustomBottomBar
-
-
 from UI.Components.Cards.Transaction_Card import TransactionCard
 from UI.Components.balance_frame import BalanceFrame 
 from UI.Components.Cards.general_card import GeneralCard
 from UI.Components.custom_textfield import CustomTextField
 
-
 from models.Month import Month
 from models.day import Day
 from models.week import Week
 
-from UI.Components.type_selector import CustomButton
+from UI.Components.add_trasaction_components import TitleComponent
+
 
 class PeriodView(ft.View):
     def __init__(self,  page: ft.Page, obj):
@@ -27,7 +23,7 @@ class PeriodView(ft.View):
         self.transaction_list = ScrollableCardList(self.list_card_type(obj))
         self.balance_frame = BalanceFrame(obj)
         self.bottom_bar = CustomBottomBar()   
-        self.text_field = CustomTextField("Nombre", False, False)
+        self.title_component = TitleComponent()
         
         super().__init__(
             route="/Period",
@@ -39,8 +35,10 @@ class PeriodView(ft.View):
                     
                     self.upper_frame,
                     self.transaction_list,
+                    self.title_component,
                     self.balance_frame,
-                    self.text_field
+
+
                     
                 ],
                 expand=True
