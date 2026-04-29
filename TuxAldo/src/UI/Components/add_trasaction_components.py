@@ -9,7 +9,7 @@ class TitleComponent(ft.Container):
         super().__init__()
 
         self.today = datetime.now().strftime("%d/%m")
-        self.title_textfield = CustomTextField("Pago de ...", 40, False, False)
+        self.title_textfield = CustomTextField("Pago de ...", 1, 1,  False, False)
 
         self.bgcolor = "#04002B"
         self.width = self.expand
@@ -51,11 +51,11 @@ class DetailsComponent (ft.Container):
     def __init__(self):
         super().__init__()
 
-        self.title_textfield = CustomTextField("se paga la factura del mes ....", 160, False, False)
+        self.title_textfield = CustomTextField( "se paga la factura del mes ....", 4, 4, True, False)
 
         self.bgcolor = "#04002B"
         self.width = self.expand
-        self.height = 120
+        self.height = 200
         self.border_radius = 20
         self.padding = 15
         self.margin = ft.Margin.only(bottom=10)

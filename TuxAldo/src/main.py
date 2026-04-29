@@ -9,6 +9,8 @@ from UI.Components.Cards.Transaction_Card import TransactionCard
 from UI.Components.Cards.general_card import GeneralCard
 from UI.views.period_view import PeriodView
 from UI.views.home_view import HomeView
+from UI.views.add_Transaccion import AddTransaccionView
+
 
 
 async def main(page: ft.Page):
@@ -83,17 +85,17 @@ async def main(page: ft.Page):
     async def route_change(e=None):
         page.views.clear()
 
-        if page.route == "/Period":
+        if page.route == "/add_transaccion":
                     
-            page.views.append(PeriodView(page, mounth1))  # Aquí puedes pasar el día que quieras mostrar
+            page.views.append(AddTransaccionView(page))  # Aquí puedes pasar el día que quieras mostrar
         
-        elif page.route == "/":
+        elif page.route == "/add_transaccion":
 
-            await page.push_route("/Period")
+            await page.push_route("/")
 
             
         else:
-            await page.push_route("/Period")  # Aquí puedes pasar el día que quieras mostrar
+            await page.push_route("/add_transaccion")  # Aquí puedes pasar el día que quieras mostrar
         page.update()
 
     async def view_pop(e):

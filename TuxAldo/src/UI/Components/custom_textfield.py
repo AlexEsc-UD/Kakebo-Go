@@ -2,18 +2,20 @@ import flet as ft
 
 class CustomTextField(ft.TextField):
     # Agregamos 'password' (o el nombre que prefieras) al constructor
-    def __init__(self, h, hiden_text, multiline=False, password=False):
+    def __init__(self, hiden_text, min_l, max_l, multiline=False, password=False):
         super().__init__()
         self.hint_text = hiden_text
         self.multiline = multiline
         self.expand = True
+        self.min_lines = min_l
+        self.max_lines = max_l
         
         # Configuración de estilo
         self.bgcolor = "#00021d"
         self.border_color = "#1B263B"
         self.focused_border_color = "#1B263B"
         self.color = ft.Colors.WHITE    
-        self.height = h
+        self.height = 40
         self.border_radius = 10
         
         # Aplicamos las propiedades a la instancia de Flet

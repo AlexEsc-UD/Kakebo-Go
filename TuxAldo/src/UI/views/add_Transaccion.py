@@ -1,16 +1,17 @@
 import flet as ft
-import datetime 
+ 
 
 from UI.Components.custom_side_bar import CustomBottomBar
+from UI.Components.add_trasaction_components import DetailsComponent
+from UI.Components.add_trasaction_components import TitleComponent
 
 class AddTransaccionView(ft.View):
-    def __init__(self, page: ft.Page, on_add, on_cancel):
+    def __init__(self, page: ft.Page):
 
         self.bottom_bar = CustomBottomBar()
-        self.on_add_callback    = on_add
-        self.on_cancel_callback = on_cancel
         self._selected_type     = "INGRESO"
-        self._today             = datetime.now().strftime("%d/%m")
+        self.details_component = DetailsComponent()
+        self.title_component = TitleComponent()
 
 
 
@@ -22,11 +23,9 @@ class AddTransaccionView(ft.View):
             padding=ft.Padding.only(top=30, left=5, right=5, bottom=10),
             controls=[ft.Column(
                 controls=[
-
-
-
-
-
+                    
+                    self.title_component,
+                    self.details_component,
 
                 ],
                 expand=True
