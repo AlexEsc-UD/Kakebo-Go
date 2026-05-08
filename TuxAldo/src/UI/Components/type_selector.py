@@ -28,9 +28,9 @@ class CustomButton(ft.Container):
             offset=ft.Offset(0, 2),
         )
 
-        # Usamos _text_color() en lugar de self.color para evitar
+
+        self.content = ft.Row(        # Usamos _text_color() en lugar de self.color para evitar
         # depender de una propiedad que aún no existe en este punto
-        self.content = ft.Row(
             alignment=ft.MainAxisAlignment.CENTER,
             controls=[
                 ft.Text(self.text, color=self._text_color(), size=14, weight=ft.FontWeight.BOLD)
@@ -42,7 +42,7 @@ class CustomButton(ft.Container):
 
     def _text_color(self):
         """Devuelve el color del texto según el tipo de botón."""
-        if self.text == "Expense":
+        if self.text == "Egreso":
             return ft.Colors.RED_ACCENT_400
         return ft.Colors.GREEN_ACCENT_400
 
@@ -76,8 +76,8 @@ class TypeSelector(ft.Row):
 
 
         # Creamos los dos botones y les pasamos nuestro handler
-        self.expense_button = CustomButton("Expense", on_click=self._handle_selection)
-        self.income_button = CustomButton("Income", on_click=self._handle_selection)
+        self.expense_button = CustomButton("Egreso", on_click=self._handle_selection)
+        self.income_button = CustomButton("Ingreso", on_click=self._handle_selection)
 
         # Asignamos los controles directamente (no usar self.add() en __init__)
         self.controls = [self.expense_button, self.income_button]
@@ -88,8 +88,8 @@ class TypeSelector(ft.Row):
 
     def _handle_selection(self, selected_type: str):
         """Actualiza el estado visual de ambos botones y notifica al padre."""
-        self.expense_button.set_active(selected_type == "Expense")
-        self.income_button.set_active(selected_type == "Income")
+        self.expense_button.set_active(selected_type == "Egreso")
+        self.income_button.set_active(selected_type == "Ingreso")
 
         if self._on_selection_change:
             self._on_selection_change(selected_type)
@@ -102,9 +102,9 @@ class DropdownCategory(ft.Container):
 
     # Constante de clase: no cambia por instancia, se comparte entre todas
     CATEGORIES = {
-        "Income": [
-            "Nómina / Salario",
-            "Honorarios / Freelance",
+        "Ingreso": [
+            "Salario",
+            "Honorarios",
             "Venta de Productos",
             "Rendimientos / Inversiones",
             "Transferencias Recibidas",
@@ -112,23 +112,21 @@ class DropdownCategory(ft.Container):
             "Reembolsos",
             "Ganancias Ocasionales",
         ],
-        "Expense": [
+        "Egreso": [
             "Alquiler / Hipoteca",
             "Servicios Públicos",
             "Mercado",
             "Restaurantes",
-            "Snacks",
-            "Transporte Público / Plataformas",
-            "Gasolina y Peajes",
-            "Mantenimiento Vehicular",
-            "Seguros y Salud",
-            "Farmacia",
-            "Suscripciones Digitales",
-            "Educación y Cursos",
-            "Ropa y Calzado",
-            "Hogar (Limpieza y Decoración)",
-            "Ocio y Entretenimiento",
-            "Pagos de Deuda / Tarjetas",
+            "Pasabocas",
+            "Transporte",
+            "vehiculo",
+            "Salud",
+            "Suscripciones",
+            "Educación",
+            "Ropa",
+            "Hogar",
+            "Ocio",
+            "Deudas",
             "Mascotas",
             "Imprevistos",
         ],
@@ -154,7 +152,7 @@ class DropdownCategory(ft.Container):
 
         # El dropdown empieza vacío con un hint informativo
         self.dropdown = ft.Dropdown(
-            hint_text="Selecciona Expense o Income primero",
+            hint_text="Selecciona Egreso o Ingreso primero",
             options=[],
             expand=True,
             height=40,

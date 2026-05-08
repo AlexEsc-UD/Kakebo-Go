@@ -6,6 +6,8 @@ from UI.Components.add_trasaction_components import DetailsComponent
 from UI.Components.add_trasaction_components import TitleComponent
 from UI.Components.add_trasaction_components import ValueComponent
 from UI.Components.add_trasaction_components import CategoryComponent
+from UI.Components.add_trasaction_components import RowButtons
+
 
 class AddTransaccionView(ft.View):
     def __init__(self, page: ft.Page):
@@ -19,7 +21,7 @@ class AddTransaccionView(ft.View):
         self.title_component   = TitleComponent()
         self.details_component = DetailsComponent()
         self.value_comp        = ValueComponent()
-
+        self.row_bottoms = RowButtons()
         # Nuevo componente: recibe callbacks de la view
         self.category_comp = CategoryComponent(
             on_type_change=self._on_type_change,
@@ -30,7 +32,7 @@ class AddTransaccionView(ft.View):
             route="/add_transaccion",
             bgcolor="#00021d",
             navigation_bar=self.bottom_bar,
-            padding=ft.Padding.only(top=30, left=5, right=5, bottom=10),
+            padding=ft.Padding.only(top=30, left=10, right=10, bottom=10),
             controls=[
                 ft.Column(
                     controls=[
@@ -38,9 +40,10 @@ class AddTransaccionView(ft.View):
                         self.category_comp,    # ← entre título y detalles
                         self.details_component,
                         self.value_comp,
+                        self.row_bottoms,
                     ],
                     expand=True,
-                    scroll=ft.ScrollMode.AUTO,  # por si el contenido no cabe
+                    scroll=ft.ScrollMode.HIDDEN,  # por si el contenido no cabe
                 )
             ],
         )

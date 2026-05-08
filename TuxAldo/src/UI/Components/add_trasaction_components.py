@@ -4,6 +4,7 @@ from datetime import datetime
 from UI.Components.custom_textfield import CustomTextField
 from UI.Components.custom_textfield import CustomTextFiNumber
 from UI.Components.type_selector import TypeSelector, DropdownCategory
+from UI.Components.CustomButton2 import CustomBuPrincipal
 
 class TitleComponent(ft.Container):
 
@@ -34,7 +35,7 @@ class TitleComponent(ft.Container):
                     alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                     controls=[
                         
-                        ft.Text("Titulo", size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
+                        ft.Text("Movimiento", size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
                         ft.Text(self.today, size=10, color=ft.Colors.GREY_400),
                     ]
                 ),
@@ -93,7 +94,7 @@ class ValueComponent(ft.Container):
     def __init__(self):
         super().__init__()
 
-        self.title_textfield = CustomTextFiNumber(hiden_text="$$")
+        self.title_textfield = CustomTextFiNumber(hiden_text="COP")
 
         self.bgcolor = "#04002B"
         self.width = self.expand
@@ -114,7 +115,7 @@ class ValueComponent(ft.Container):
 
 
                         
-                ft.Text("Value", size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
+                ft.Text("Valor", size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
                 self.title_textfield
                 
 
@@ -175,3 +176,20 @@ class CategoryComponent(ft.Container):
         if self._on_category_change:
             self._on_category_change(categoria)
     
+class RowButtons(ft.Row):
+    def __init__(self, **kwds):
+        super().__init__(**kwds)
+
+        self.save_button = CustomBuPrincipal("Añadir", "#ffd900", "#00021d")
+        self.cancel_button = CustomBuPrincipal("Cancelar", "#04002B")
+
+        self.controls = [
+            
+            self.cancel_button,
+            self.save_button,
+            
+        ]
+        
+        self.alignment = ft.MainAxisAlignment.CENTER
+        self.spacing = 80
+        self.expand = True
